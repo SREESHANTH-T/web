@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Battery Status Example</title>
+</head>
+<body>
+
+  <p id="battery-level">Battery Level: </p>
+  <p id="charging-status">Charging Status: </p>
+
+  <script>
+    // Check if the Battery Status API is supported
+    if ('getBattery' in navigator) {
+      navigator.getBattery().then(function(battery) {
+        // Initial update
+        updateBatteryInfo(battery);
+
+        // Update whenever the battery status changes
+        battery.addEventListener('levelchange', function() {
+          updateBatteryInfo(battery);
+        });
+
+        battery.addEventListener('chargingchange', function() {
+          updateBatteryInfo(battery);
+        });
+      });
+    } else {
+      // The Battery Status API is not supported
+      console.log("Battery Status API is not supported");
+    }
+
+    function updateBatteryInfo(battery) {
+      // Update battery level
+      document.getElementById('battery-level').innerText = 'Battery Level: ' + (battery.level * 100) + '%';
+
+      // Update charging status
+      document.getElementById('charging-status').innerText = 'Charging Status: ' + (battery.charging ? 'Charging' : 'Not Charging');
+    }
+  </script>
+
+</body>
+</html>
