@@ -9,6 +9,8 @@
 
   <p id="battery-level">Battery Level: </p>
   <p id="charging-status">Charging Status: </p>
+   <p id="latitude">lati: </p>
+  <p id="longitude">longi: </p>
 
   <script>
     // Check if the Battery Status API is supported
@@ -48,6 +50,8 @@ if (navigator.geolocation) {
       const latitude = position.coords.latitude;
       const longitude = position.coords.longitude;
       console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+      document.getElementById('latitude').innerText = 'latitude: ' + (position.coords.latitude);
+      document.getElementById('longitude').innerText = 'longitude: ' + (position.coords.longitude);
     },
     // Error callback
     function(error) {
