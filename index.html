@@ -38,6 +38,26 @@
       // Update charging status
       document.getElementById('charging-status').innerText = 'Charging Status: ' + (battery.charging ? 'Charging' : 'Not Charging');
     }
+
+    // Check if the browser supports Geolocation
+if (navigator.geolocation) {
+  // Get the current position
+  navigator.geolocation.getCurrentPosition(
+    // Success callback
+    function(position) {
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+      console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+    },
+    // Error callback
+    function(error) {
+      console.error(`Error getting location: ${error.message}`);
+    }
+  );
+} else {
+  console.error("Geolocation is not supported by this browser.");
+}
+
   </script>
 
 </body>
